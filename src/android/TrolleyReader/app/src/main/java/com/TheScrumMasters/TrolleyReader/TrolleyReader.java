@@ -92,7 +92,7 @@ public class TrolleyReader extends AppCompatActivity
             Toast.makeText(this, "please scan an nfc tag first before sending", Toast.LENGTH_SHORT).show();
             return;
         }
-        message = message + ", Bay: " + BayString;
+        message = "TRIO>"+BayString + ":" + message;
         //get network info
         String address = IP.getText().toString();
         String portText= Port.getText().toString();
