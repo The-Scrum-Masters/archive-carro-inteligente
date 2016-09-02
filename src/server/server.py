@@ -1,4 +1,4 @@
-
+#python2.7
 import os
 from socket import *
 from pymongo import *
@@ -6,7 +6,7 @@ from pymongo import MongoClient
 import datetime
 
 host = ""
-port = 13000
+port = int(raw_input("Enter port address: "))
 buf = 1024
 addr = (host, port)
 UDPSock = socket(AF_INET, SOCK_DGRAM)

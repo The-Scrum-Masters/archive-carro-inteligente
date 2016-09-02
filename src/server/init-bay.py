@@ -14,9 +14,10 @@ UDPSock = socket(AF_INET, SOCK_DGRAM)
 
 while True:
 
-    data = raw_input("enter input: ")
+    data = raw_input("enter bay name: ")
     if data == "exit":
         break
+    data = "INIT>"+data
     UDPSock.sendto(data, addr)
 UDPSock.close()
 os._exit(0)
