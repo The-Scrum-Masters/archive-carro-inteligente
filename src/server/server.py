@@ -12,7 +12,12 @@ addr = (host, port)
 UDPSock = socket(AF_INET, SOCK_DGRAM)
 UDPSock.bind(addr)
 
-client = MongoClient()
+
+
+
+uri = "mongodb://greg:greg@ds019746.mlab.com:19746/trolleysystem"
+client = MongoClient(uri)
+#client = MongoClient()
 db = client.trolleysystem
 
 def addElement(bayId, trolleyId):
