@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".TrolleyReader">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Data Read: "
+        android:id="@+id/DataOut_Label"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="&quot;&quot;"
+        android:id="@+id/DataOut"
+        android:gravity="bottom"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/DataOut_Label" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Status: "
+        android:id="@+id/Status_Label"
+        android:layout_alignTop="@+id/Status"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/Status"
+        android:text="Ready"
+        android:layout_below="@+id/DataOut_Label"
+        android:layout_toEndOf="@+id/Status_Label"
+        android:layout_marginTop="179dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send Data"
+        android:id="@+id/sendTxt"
+        android:onClick="sendTxt_onClick"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Send Data via UDP;IP:Port"
+        android:id="@+id/UDPTextview"
+        android:layout_below="@+id/Status_Label"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="53dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/IPDestEditText"
+        android:layout_alignParentStart="true"
+        android:hint="IP address"
+        android:minWidth="200dp"
+        android:layout_below="@+id/UDPTextview"
+        android:layout_alignParentLeft="true"
+        android:text="192.168.1.100"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/PortDestEditText"
+        android:hint="Port"
+        android:minWidth="500dp"
+        android:layout_alignTop="@+id/IPDestEditText"
+        android:layout_toEndOf="@+id/IPDestEditText"
+        android:text="5005"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/BayEditText"
+        android:hint="BayID"
+        android:layout_below="@+id/IPDestEditText"
+        android:layout_toEndOf="@+id/Status_Label"
+        android:text="The Scrum Master&apos;s Bay"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="BayID: "
+        android:id="@+id/textView"
+        android:layout_below="@+id/IPDestEditText"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/BayEditText"
+        android:gravity="center"
+        android:layout_alignBottom="@+id/BayEditText"/>/>
+
+</RelativeLayout>

@@ -1,0 +1,3 @@
+http://code.tutsplus.com/tutorials/reading-nfc-tags-with-android--mobile-17278
+https://github.com/survivingwithandroid/Surviving-with-android/tree/master/NFCWriter
+

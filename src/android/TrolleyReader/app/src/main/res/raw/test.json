@@ -1,0 +1,17 @@
+[
+  {
+    "_id": "57bfd35ce7c3b352c3ff9ac5",
+    "index": 0,
+    "guid": "d1846e35-951d-4b0b-a625-3476d2cf1e46",
+    "isActive": true,
+    "balance": "$3,175.85",
+    "age": 25,
+    "name": "Velma Martinez",
+    "gender": "female",
+    "company": "MEDIOT",
+    "address": "379 Broome Street, Glenville, Arkansas, 4373",
+    "registered": "2014-07-17T03:09:50 -10:00",
+    "latitude": -4.187176,
+    "longitude": -100.446476
+  }
+]

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Trolley Reader</string>
+    <string name="nfc_tag_type">NFC Tag Type:</string>
+    <string name="nfc_tag_id">NFC Tag ID: </string>
+    <string name="title_activity_nfcwriter">NFC Writer</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_nfcreader">Trolley Reader</string>
+    <string name="ReadMode">Read Trolleys</string>
+    <string name="WriteMode">Write Trolleys</string>
+</resources>
