@@ -8,7 +8,7 @@ meHost = open('ip.txt','r')
 host =  meHost.read().split('\n')[0]
 meHost.close()
 
-port = 13000
+port = int(raw_input("Enter port: "))
 addr = (host, port)
 UDPSock = socket(AF_INET, SOCK_DGRAM)
 
