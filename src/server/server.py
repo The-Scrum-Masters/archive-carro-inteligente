@@ -12,9 +12,6 @@ addr = (host, port)
 UDPSock = socket(AF_INET, SOCK_DGRAM)
 UDPSock.bind(addr)
 
-
-
-
 uri = "mongodb://greg:greg@ds019746.mlab.com:19746/trolleysystem"
 client = MongoClient(uri)
 #client = MongoClient()
@@ -69,8 +66,8 @@ while True:
         inputType = data.split(">")[0]
         data = (data.split(">")[1])
         if inputType == "TRIO":
-            bayId = data.split(":")[0]
-            trolleyId = data.split(":")[1]
+            bayId = data.split("#")[0]
+            trolleyId = data.split("#")[1]
             #print "inputType="+inputType+", bayId="+bayId+", trolleyId="+trolleyId+"\n"
             addElement(bayId,trolleyId)
 

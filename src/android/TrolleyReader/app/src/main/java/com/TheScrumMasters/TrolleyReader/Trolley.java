@@ -16,7 +16,8 @@ public class Trolley
 
     public String toJSON()
     {
-        String str = "{" + "TrolleyID:" + TrolleyID + ",CentreID:" + ShoppingCentreID + "}";
+        //String str = "{" + "TrolleyID:" + TrolleyID + ",CentreID:" + ShoppingCentreID + "}";
+        String str = TrolleyID;
         return str;
     }
 }
