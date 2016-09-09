@@ -1,4 +1,4 @@
-## Carro Inteligente ![shield](https://img.shields.io/github/issues/The-Scrum-Masters/carro-inteligente.svg) [![GitHub stars](https://img.shields.io/github/stars/The-Scrum-Masters/carro-inteligente.svg)](https://github.com/The-Scrum-Masters/carro-inteligente/stargazers)
+## Carro Inteligente ![issues](https://img.shields.io/github/issues/The-Scrum-Masters/carro-inteligente.svg) [![GitHub stars](https://img.shields.io/github/stars/The-Scrum-Masters/carro-inteligente.svg)](https://github.com/The-Scrum-Masters/carro-inteligente/stargazers)
 > an *Internet of Things* innovation int the way we shop. It provides *trolley tracking* information and big data analytics. In our first release we produced a prototype model that can track trolley bay quantities and store this data offsite or locally in a mongoDB.
 
 ### Downloads
@@ -16,14 +16,14 @@ MongoDB Testing Database Login Information (only use this db for testing)
 
 ## How to setup
 
-### Step 1. Requirements
+### Step 0. Requirements
 - Python 2.7
 - PIP (python package manager)
 - PyMongo
 - MongoDB Shell or access to port 19746
 - Android w/NFC running api 21 (Lolipop) or above
 
-### Step 2. Configuration of  Server
+### Step 1. Configuration of  Server
 
 ##### Option 1
 *For offsite database*
