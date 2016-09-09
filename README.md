@@ -1,8 +1,17 @@
 ## Carro Inteligente ![shield](https://img.shields.io/github/issues/The-Scrum-Masters/carro-inteligente.svg) [![GitHub stars](https://img.shields.io/github/stars/The-Scrum-Masters/carro-inteligente.svg)](https://github.com/The-Scrum-Masters/carro-inteligente/stargazers)
 > an *Internet of Things* innovation int the way we shop. It provides *trolley tracking* information and big data analytics. In our first release we produced a prototype model that can track trolley bay quantities and store this data offsite or locally in a mongoDB.
 
+### Downloads
+####Android APK
 
-MongoDB Testing Database Login Information
+>[Download Link](https://drive.google.com/file/d/0BxTFdcq6C-VZMHVLQW5VVHZwTEE/view?usp=sharing)
+
+>[Virus check](https://www.virustotal.com/en/file/dd549091ed47f84ed913c35e164f5309b65448eb52374cf62885e0cbb69525bd/analysis/1473392560/)
+
+
+###Other Information
+
+MongoDB Testing Database Login Information (only use this db for testing)
 >mongodb://greg:greg@ds019746.mlab.com:19746/trolleysystem
 
 ## How to setup
