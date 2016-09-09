@@ -90,7 +90,7 @@ Next you will need to initiate bays (this step is the same for local and offsite
 
 >![alert](http://media.uninen.net/admin/img/icon-alert.svg)![alert](http://media.uninen.net/admin/img/icon-alert.svg) Make sure that you do not include a '#' in the bay name otherwise it will cause problems with the prototype and the bay name length must be shorter than 10 characters
 
-Step 4. Testing the system
+###Step 4. Testing the system
 
 >Ensure that all devices have been setup with the correct IPs and ports and they are all on the same network using a valid port address
 
