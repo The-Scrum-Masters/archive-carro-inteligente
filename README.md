@@ -107,6 +107,15 @@ a windows like this should pop up
 *Optional* Step. If you are running the mongodb locally, you can view the changes to the local db as you go. Below are a few relevant command for viewing the data in the database
 commands for mongo
 
+| **Command**       | **Description**                                       |
+|-------------------|-------------------------------------------------------|
+| mongod            | Runs mongodb daemon                                   |
+| mongo             | Opens mongodb shell                                   |
+| show dbs          | lists accessible dbs                                  |
+| use ###           | Sets the open db to ###                               |
+| show collections  | Lists the names of the collections in your  active db |
+| db.###.find()     | Lists all record in collection ### of the active db   |
+| db.dropDatabase() | Deletes the existing database                         |
 
 **Example MongoDB Output (fig opt.1)**                          
 ![Imgur](http://i.imgur.com/lPmiJ58.png)
