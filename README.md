@@ -25,7 +25,7 @@ MongoDB Testing Database Login Information (only use this db for testing)
 
 ### Step 2. Configuration of  Server
 
-###### Option 1
+##### Option 1
 *For offsite database*
 
 Make sure that this code block isn't commented out and the one after is (by default, this is enabled)
@@ -35,7 +35,7 @@ client = MongoClient(uri)
 
 (Do this in /src/server/server.py, /src/server/init-bay.py, /src/web-app/viewer.py)
 
-###### Option 2
+##### Option 2
 *For local network database* (requires mongodb shell)
 
 Make sure that this code block isn't commented out and the one before it is
@@ -44,7 +44,7 @@ client = MongoClient()
 
 (Do this in /src/server/server.py, /src/server/init-bay.py, /src/web-app/viewer.py)
 
-###### IP setup for bay initialisation
+##### IP setup for bay initialisation
 
 in /src/server/ip.txt, change the value to the local value of your workstations ip.
 
@@ -60,10 +60,15 @@ Download the latest build of the apk at:
 
 >[Virus check](https://www.virustotal.com/en/file/dd549091ed47f84ed913c35e164f5309b65448eb52374cf62885e0cbb69525bd/analysis/1473392560/)
 
-After installing open the application and go to the "Read Tag" button
-<!--Image of main menu-->
+After installing open the application and go to the "Read a Tag" button
+
+**Main Menu of Bay (fig. 2.1)**             
+![Imgur](http://i.imgur.com/K7dUdtJ.png)
 
 Enter in the servers IP address in the ip field and decide on a port for the port field (you will be prompted for a port when excecuting the server, use the same value)
+
+**Read a Tag Menu of Bay (fig. 2.2)**             
+![Imgur](http://i.imgur.com/8BKiogu.png)
 
 Nex step is to scan in any nfc tag (e.g. opal card, self written, etc)
 
@@ -71,6 +76,40 @@ After the tag has been successfully read, press send. A toast message will appea
 
 ### Step 3. Start the Server and Initialise *x* number of Bays
 
+Navigate to the server folder (/src/server/...) and open a cmd/terminal that supports python. Run the python script and check for any errors (if errors occur, check that you have met all of the requirements).
+>It will prompt you to enter a port number, use the same port as the one configured on your android (bay)
+
+Here is an image of the python scripts output in action
+
+**Server Script (fig. 3.3)**             
+![Imgur](http://i.imgur.com/L2tUZBm.png)
+
+Next you will need to initiate bays (this step is the same for local and offsite). To initate the bays open a second cmd/terminal window in the same folder and run /src/server/init-bays.py. Once open it will prompt you for a port (same as previous). It will then ask you to enter in bay names, it won't end until the user quits the script with ctrl + C (Windows/Linux) or cmd + C (MacOSX).
+
+>![alert](http://media.uninen.net/admin/img/icon-alert.svg) if this step fails ensure that the ip is configured in /src/server/ip.txt and you are using a valid local port on your network
+
+>![alert](http://media.uninen.net/admin/img/icon-alert.svg)![alert](http://media.uninen.net/admin/img/icon-alert.svg) Make sure that you do not include a '#' in the bay name otherwise it will cause problems with the prototype and the bay name length must be shorter than 10 characters
+
+Step 4. Testing the system
+
+>Ensure that all devices have been setup with the correct IPs and ports and they are all on the same network using a valid port address
+
+On the Android (bay) scan a tag and press send, on the python server script it should say "Recieved(...)" and the line after should read "Update trolley ... in bay ...".
+
+Navigate to the folder /src/web-app/viewer.py and run the script (ensure that you have configured it to be either offsite or local)
+
+a windows like this should pop up
+
+**Trolley Bay Count (fig. 4.1)**             
+![Imgur](http://i.imgur.com/foDIebQ.png)
+
+
+*Optional* Step. If you are running the mongodb locally, you can view the changes to the local db as you go. Below are a few relevant command for viewing the data in the database
+commands for mongo
+
+
+**Example MongoDB Output (fig opt.1)**                          
+![Imgur](http://i.imgur.com/lPmiJ58.png)
 
 
 ## Next Features to implement
