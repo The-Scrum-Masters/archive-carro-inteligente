@@ -13,6 +13,7 @@ MongoDB Testing Database Login Information
 - PIP (python package manager)
 - PyMongo
 - MongoDB Shell or access to port 19746
+- Android w/NFC running api 21 (Lolipop) or above
 
 ### Step 2. Configuration of  Server
 
@@ -47,7 +48,9 @@ Basic commands to find local ip in cmd/terminal:
 *at this stage in the project the nfc tag scanner only works with an Android phone with its api above 21 (Lollipop). Prior to 21, nfc scanners were handled differently to modern versions. For this reason, we have opted to support newer phones over older ones. If you do not have an android phone that is above api 21, please use /src/server/server-test-input.py however this is not fully supported*
 
 Download the latest build of the apk at:
->https://drive.google.com/
+>[Download Link](https://drive.google.com/file/d/0BxTFdcq6C-VZMHVLQW5VVHZwTEE/view?usp=sharing)
+
+>[Virus check](https://www.virustotal.com/en/file/dd549091ed47f84ed913c35e164f5309b65448eb52374cf62885e0cbb69525bd/analysis/1473392560/)
 
 After installing open the application and go to the "Read Tag" button
 <!--Image of main menu-->
