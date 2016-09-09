@@ -14,16 +14,55 @@ MongoDB Testing Database Login Information
 - PyMongo
 - MongoDB Shell or access to port 19746
 
-### Step 2. Configuration
+### Step 2. Configuration of  Server
 
 ###### Option 1
-For offsite database
+*For offsite database*
 
-Make sure that this code block isn't commented out and the one after is
+Make sure that this code block isn't commented out and the one after is (by default, this is enabled)
 
 uri = "mongodb://greg:greg@ds019746.mlab.com:19746/trolleysystem"
 client = MongoClient(uri)						
-.  
+
+(Do this in /src/server/server.py, /src/server/init-bay.py, /src/web-app/viewer.py)
 
 ###### Option 2
->For local network database (requires mongodb shell)
+*For local network database* (requires mongodb shell)
+
+Make sure that this code block isn't commented out and the one before it is
+
+client = MongoClient()						
+
+(Do this in /src/server/server.py, /src/server/init-bay.py, /src/web-app/viewer.py)
+
+###### IP setup for bay initialisation
+
+in /src/server/ip.txt, change the value to the local value of your workstations ip.
+
+Basic commands to find local ip in cmd/terminal:
+- ipconfig (Windows)
+- ifconfig (MacOSX/Linux)
+
+### Step 2. Configuration of Android Scanner/Client
+*at this stage in the project the nfc tag scanner only works with an Android phone with its api above 21 (Lollipop). Prior to 21, nfc scanners were handled differently to modern versions. For this reason, we have opted to support newer phones over older ones. If you do not have an android phone that is above api 21, please use /src/server/server-test-input.py however this is not fully supported*
+
+Download the latest build of the apk at:
+>https://drive.google.com/
+
+After installing open the application and go to the "Read Tag" button
+<!--Image of main menu-->
+
+Enter in the servers IP address in the ip field and decide on a port for the port field (you will be prompted for a port when excecuting the server, use the same value)
+
+Nex step is to scan in any nfc tag (e.g. opal card, self written, etc)
+
+After the tag has been successfully read, press send. A toast message will appear explaining that a message attempted to send. It will not however be caught as the server has not been started and the trolley bay has not been created in the mongodb.
+
+### Step 3. Start the Server and Initialise *x* number of Bays
+
+
+
+## Next Features to implement
+- Python GUI
+- Add troley bay config capabilities to android
+- Web app interface
