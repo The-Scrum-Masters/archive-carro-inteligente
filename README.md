@@ -12,7 +12,7 @@
 ###Other Information
 
 MongoDB Testing Database Login Information (only use this db for testing)
->mongodb://greg:greg@ds019746.mlab.com:19746/trolleysystem
+>[mongodb://greg:greg@ds019746.mlab.com:19746/trolleysystem](http://greg:greg@ds019746.mlab.com:19746/trolleysystem)
 
 ## How to setup
 
