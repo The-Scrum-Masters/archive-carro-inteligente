@@ -15,11 +15,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.TheScrumMasters.TrolleyReader.UtilityClasses.PermissionHandler;
+
 import java.util.ArrayList;
 
 public class NotificationManager extends AppCompatActivity
 {
     SmsManager smsManager;
+    PermissionHandler permissionHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -28,7 +31,8 @@ public class NotificationManager extends AppCompatActivity
         setContentView(R.layout.activity_notification_manager);
 
         smsManager = SmsManager.getDefault();
-        askPermissionforSMS();
+        permissionHandler = new PermissionHandler();
+        permissionHandler.askPermission(this, PermissionHandler.Permissions.SENDSMS);
     }
 
     public void sendSMS_onClick(View view)
@@ -74,45 +78,6 @@ public class NotificationManager extends AppCompatActivity
         return null;
     }
 
-
-    private void askPermissionforSMS()
-    {
-        // Here, thisActivity is the current activity
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED)
-        {
-            // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.SEND_SMS))
-            {
-                // Show an expanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-                AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-                builder1.setMessage("You need to enable SMS for this to work");
-                builder1.setCancelable(true);
-
-                builder1.setNeutralButton(
-                    "OK",
-                    new DialogInterface.OnClickListener()
-                    {
-                            public void onClick(DialogInterface dialog, int id)
-                            {
-                                dialog.cancel();
-                            }
-                    });
-                AlertDialog alert11 = builder1.create();
-                alert11.show();
-
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, 0);
-            } else {
-
-                // No explanation needed, we can request the permission.
-
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, 0);
-            }
-        }
-    }
-
-
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
@@ -129,7 +94,6 @@ public class NotificationManager extends AppCompatActivity
 
                     // permission denied, boo!
                     Toast.makeText(this,"Can't really send SMS's if denied, quitting mode.", Toast.LENGTH_LONG).show();
-                    finish();
                 }
             }
 
@@ -137,4 +101,5 @@ public class NotificationManager extends AppCompatActivity
             // permissions this app might request
         }
     }
+
 }

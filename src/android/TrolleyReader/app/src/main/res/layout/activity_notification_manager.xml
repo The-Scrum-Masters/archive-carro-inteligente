@@ -85,7 +85,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text=" "
+        android:text="Ready"
         android:id="@+id/Error_Out"
         android:layout_alignBottom="@+id/ErrorLabel"
         android:layout_toEndOf="@+id/PhoneLabel"/>
