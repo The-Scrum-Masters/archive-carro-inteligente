@@ -63,4 +63,14 @@
         android:layout_alignParentStart="true"
         android:layout_alignEnd="@+id/writeTagMode"
         android:onClick="ReadTagMode_onClick" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Notifications"
+        android:id="@+id/notificationMode"
+        android:onClick="NotificationMode_onClick"
+        android:layout_below="@+id/readTagMode"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/readTagMode"/>
 </RelativeLayout>
