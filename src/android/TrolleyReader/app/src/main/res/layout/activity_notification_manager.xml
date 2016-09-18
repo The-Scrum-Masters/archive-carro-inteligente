@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.TheScrumMasters.TrolleyReader.NotificationManager">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Send SMS"
+        android:id="@+id/SmsLabel"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:ems="10"
+        android:id="@+id/Phone_EditText"
+        android:hint="Phone number"
+        android:text="0434352989"
+        android:layout_below="@+id/PhoneLabel"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Phone: "
+        android:id="@+id/PhoneLabel"
+        android:layout_below="@+id/SmsLabel"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="18dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/Message_EditText"
+        android:layout_below="@+id/Phone_EditText"
+        android:layout_marginTop="32dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Message: "
+        android:id="@+id/MessageLabel"
+        android:layout_below="@+id/Phone_EditText"
+        android:layout_alignParentStart="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send!"
+        android:id="@+id/SendSMS_Button"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/Message_EditText"
+        android:onClick="sendSMS_onClick"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Errors: "
+        android:id="@+id/ErrorLabel"
+        android:layout_below="@+id/Message_EditText"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="85dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=" "
+        android:id="@+id/Error_Out"
+        android:layout_alignBottom="@+id/ErrorLabel"
+        android:layout_toEndOf="@+id/PhoneLabel"/>
+
+</RelativeLayout>
