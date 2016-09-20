@@ -1,6 +1,10 @@
 --NFC--
 http://code.tutsplus.com/tutorials/reading-nfc-tags-with-android--mobile-17278
 https://github.com/survivingwithandroid/Surviving-with-android/tree/master/NFCWriter
+
 --SMS--
 https://www.mkyong.com/android/how-to-send-sms-message-in-android/
+
+--Permissions--
+https://developer.android.com/training/permissions/requesting.html
 

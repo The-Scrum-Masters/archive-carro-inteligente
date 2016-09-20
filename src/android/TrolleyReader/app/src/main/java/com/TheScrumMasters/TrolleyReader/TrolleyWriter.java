@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.TheScrumMasters.TrolleyReader.UtilityClasses.NFCHandler;
 import com.TheScrumMasters.TrolleyReader.UtilityClasses.Trolley;
 
 public class TrolleyWriter extends AppCompatActivity

@@ -23,6 +23,7 @@ public class NotificationManager extends AppCompatActivity
 {
     SmsManager smsManager;
     PermissionHandler permissionHandler;
+    final int INITIAL_REQUEST_CODE = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -31,8 +32,8 @@ public class NotificationManager extends AppCompatActivity
         setContentView(R.layout.activity_notification_manager);
 
         smsManager = SmsManager.getDefault();
-        permissionHandler = new PermissionHandler();
-        permissionHandler.askPermission(this, PermissionHandler.Permissions.SENDSMS);
+        permissionHandler = new PermissionHandler(this);
+        permissionHandler.askPermission(this, permissionHandler.getAllPermissions(), INITIAL_REQUEST_CODE);
     }
 
     public void sendSMS_onClick(View view)
@@ -79,26 +80,18 @@ public class NotificationManager extends AppCompatActivity
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case 0: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                    // permission was granted, yay!
-                    Toast.makeText(this,"Thanks Send away!", Toast.LENGTH_LONG).show();
-
-                } else {
-
-                    // permission denied, boo!
-                    Toast.makeText(this,"Can't really send SMS's if denied, quitting mode.", Toast.LENGTH_LONG).show();
-                }
-            }
-
-            // other 'case' lines to check for other
-            // permissions this app might request
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults)
+    {
+        permissionHandler.getRequestResults(this, permissionHandler.getAllPermissions());
+        boolean result = permissionHandler.getIfPermissionGranted(PermissionHandler.Permissions.SENDSMS);
+        if (result)
+        {
+            Toast.makeText(this, "Thanks Send away!", Toast.LENGTH_LONG).show();
+        }
+        else
+        {
+            Toast.makeText(this,"Can't really send SMS's if denied, quitting mode.", Toast.LENGTH_LONG).show();
+            finish();
         }
     }
 

@@ -11,10 +11,8 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
-
     <uses-permission android:name="android.permission.SEND_SMS"/>
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
-
 
     <application
         android:allowBackup="true"
@@ -47,13 +45,19 @@
             android:label="@string/WriteMode"/>
         <activity
             android:name=".NotificationManager"
-            android:label="Notification Manager"/>
+            android:label="Notification Manager (to send SMS)"/>
 
-        <receiver android:name=".listener.SmsListener">
+        <activity
+            android:name=".NotificationClient"
+            android:label="Notification Client"/>
+
+        <receiver android:name=".UtilityClasses.SMSManager">
             <intent-filter android:priority="1000">
-                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
             </intent-filter>
         </receiver>
+
+
     </application>
 
 </manifest>

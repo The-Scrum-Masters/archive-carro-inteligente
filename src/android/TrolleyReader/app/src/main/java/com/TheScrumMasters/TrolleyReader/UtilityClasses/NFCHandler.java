@@ -1,4 +1,4 @@
-package com.TheScrumMasters.TrolleyReader;
+package com.TheScrumMasters.TrolleyReader.UtilityClasses;
 
 import android.app.Activity;
 import android.app.PendingIntent;

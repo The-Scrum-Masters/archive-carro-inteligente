@@ -4,13 +4,17 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Random;
 
 /**
  * Created by ryan on 19/09/16.
@@ -24,46 +28,60 @@ public class PermissionHandler
     }
 
     private HashMap<Permissions, String> permissionMap = new HashMap<>(Permissions.values().length);
+    private HashMap<Permissions, Boolean> grantedPermissions = new HashMap<>(Permissions.values().length);
 
-    public PermissionHandler()
+    public PermissionHandler(Activity activity)
     {
         permissionMap.put(Permissions.SENDSMS, Manifest.permission.SEND_SMS);
         permissionMap.put(Permissions.RECEIVESMS, Manifest.permission.RECEIVE_SMS);
+
+        grantedPermissions.put(Permissions.SENDSMS, false);
+        grantedPermissions.put(Permissions.RECEIVESMS, false);
+        getRequestResults(activity, permissionMap.keySet().toArray(new Permissions[permissionMap.size()])); //second arg to get all keys from permission map
     }
 
-    public void askPermission(Activity activity, Permissions permission)
+    /**
+     *
+     * @param activity the activity calling this
+     * @param permissions Permissions to request, which are registered prior in {@link Permissions}
+     */
+    public void askPermission(Activity activity, Permissions[] permissions, int requestID)
     {
-        // Here, thisActivity is the current activity
-        if (ContextCompat.checkSelfPermission(activity, permissionMap.get(permission)) != PackageManager.PERMISSION_GRANTED)
+        ArrayList<String> permissionsToRequest = new ArrayList<>(permissions.length);
+        for (Permissions permission : permissions)
         {
-            // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(activity, permissionMap.get(permission)))
+            // Here, thisActivity is the current activity
+            if (ContextCompat.checkSelfPermission(activity, permissionMap.get(permission)) != PackageManager.PERMISSION_GRANTED)
             {
-                // Show an expanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-                AlertDialog.Builder builder1 = new AlertDialog.Builder(activity);
-                builder1.setMessage("You need to enable SMS for this to work");
-                builder1.setCancelable(true);
-
-                builder1.setNeutralButton(
-                        "OK",
-                        new DialogInterface.OnClickListener()
-                        {
-                            public void onClick(DialogInterface dialog, int id)
-                            {
-                                dialog.cancel();
-                            }
-                        });
-                AlertDialog alert11 = builder1.create();
-                alert11.show();
-
-
+                permissionsToRequest.add(permissionMap.get(permission));
             }
-            ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.SEND_SMS}, permission.ordinal());
+        }
+        if (permissionsToRequest.isEmpty())
+        {
+            //All the permissions we need have been granted, no need to request any
+            return;
+        }
+        ActivityCompat.requestPermissions(activity, permissionsToRequest.toArray(new String[permissionsToRequest.size()]) , requestID); //sorry for that 2nd arg, all it does it get get all permission Strings
+    }
+
+    public void getRequestResults(Activity activity, Permissions[] permissions) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && activity != null && permissions != null) {
+            for (Permissions permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(activity, permissionMap.get(permission)) == PackageManager.PERMISSION_GRANTED) {
+                    grantedPermissions.put(permission, true);
+                }
+            }
         }
     }
 
+    public boolean getIfPermissionGranted(Permissions permission)
+    {
+        return grantedPermissions.get(permission);
+    }
 
-
+    public Permissions[] getAllPermissions()
+    {
+        return permissionMap.keySet().toArray(new Permissions[permissionMap.size()]);
+    }
 }
+
