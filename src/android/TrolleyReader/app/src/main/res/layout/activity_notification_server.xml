@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.TheScrumMasters.TrolleyReader.NotificationServer">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Trolleys In Bays"
+        android:id="@+id/Bays_Label"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:textColor="@android:color/black"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Bay 1: "
+        android:id="@+id/textView3"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="32dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/Bays_Label"/>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Bay0_ProgressBar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_toEndOf="@+id/textView3"
+        android:max="20"
+        android:indeterminate="false"
+        android:progress="20"
+        android:minWidth="300dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Bay 2: "
+        android:id="@+id/textView2"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="28dp"
+        android:layout_below="@+id/Bay0_ProgressBar"
+        android:layout_alignParentStart="true"/>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Bay1_ProgressBar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:max="20"
+        android:indeterminate="false"
+        android:progress="20"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignStart="@+id/Bay0_ProgressBar"
+        android:minWidth="300dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Bay 3: "
+        android:id="@+id/textView4"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="28dp"
+        android:layout_below="@+id/Bay1_ProgressBar"
+        android:layout_alignParentStart="true"/>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Bay2_ProgressBar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:max="20"
+        android:indeterminate="false"
+        android:progress="20"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_alignStart="@+id/Bay1_ProgressBar"
+        android:minWidth="300dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Select Bay: "
+        android:id="@+id/textView5"
+        android:layout_below="@+id/Bay2_ProgressBar"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="27dp"
+        android:textColor="@android:color/black"/>
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Bay_Spinner"
+        android:layout_alignTop="@+id/textView5"
+        android:layout_centerHorizontal="true"
+        android:spinnerMode="dialog"
+        android:textAlignment="center"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Trolley"
+        android:id="@+id/Add"
+        android:layout_marginTop="33dp"
+        android:onClick="addTrolley_onClick"
+        android:layout_below="@+id/textView5"
+        android:layout_alignParentStart="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remove Trolley"
+        android:id="@+id/Remove"
+        android:onClick="removeTrolley_onClick"
+        android:layout_alignTop="@+id/Add"
+        android:layout_alignParentEnd="true"/>
+
+</RelativeLayout>

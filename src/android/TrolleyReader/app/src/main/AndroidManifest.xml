@@ -46,18 +46,12 @@
         <activity
             android:name=".NotificationManager"
             android:label="Notification Manager (to send SMS)"/>
-
         <activity
             android:name=".NotificationClient"
             android:label="Notification Client"/>
 
-        <receiver android:name=".UtilityClasses.SMSManager">
-            <intent-filter android:priority="1000">
-                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
-            </intent-filter>
-        </receiver>
-
-
+        <activity android:name=".NotificationServer">
+        </activity>
     </application>
 
 </manifest>

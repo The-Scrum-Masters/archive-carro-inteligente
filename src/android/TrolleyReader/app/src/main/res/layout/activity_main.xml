@@ -73,4 +73,25 @@
         android:layout_below="@+id/readTagMode"
         android:layout_alignParentStart="true"
         android:layout_alignEnd="@+id/readTagMode"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Notification Client"
+        android:id="@+id/notificationClientMode"
+        android:onClick="NotificationClient_onClick"
+        android:layout_below="@+id/notificationMode"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="46dp"
+        android:layout_alignParentStart="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Notification Server"
+        android:id="@+id/notificationServerMode"
+        android:onClick="NotificationServer_onClick"
+        android:layout_below="@+id/notificationMode"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"/>
 </RelativeLayout>

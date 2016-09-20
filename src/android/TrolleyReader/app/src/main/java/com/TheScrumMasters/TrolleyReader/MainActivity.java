@@ -103,6 +103,16 @@ public class MainActivity extends AppCompatActivity
         startActivity(new Intent(this, NotificationManager.class));
     }
 
+    public void NotificationClient_onClick(View v)
+    {
+        startActivity(new Intent(this, NotificationClient.class));
+    }
+
+    public void NotificationServer_onClick(View v)
+    {
+        startActivity(new Intent(this, NotificationServer.class));
+    }
+
     private void getTextViews()
     {
         nfcType = (TextView) findViewById(R.id.NFC_Type_Out);

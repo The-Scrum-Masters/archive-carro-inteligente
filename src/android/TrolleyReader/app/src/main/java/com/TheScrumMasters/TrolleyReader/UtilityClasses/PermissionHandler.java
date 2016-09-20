@@ -24,7 +24,7 @@ public class PermissionHandler
     public enum Permissions
     {
         SENDSMS,
-        RECEIVESMS
+        RECEIVESMS,
     }
 
     private HashMap<Permissions, String> permissionMap = new HashMap<>(Permissions.values().length);
