@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.TheScrumMasters.TrolleyReader.UtilityClasses.PermissionHandler;
+import com.TheScrumMasters.TrolleyReader.UtilityClasses.SMSNotification;
 
 import java.util.ArrayList;
 
@@ -45,7 +46,7 @@ public class NotificationManager extends AppCompatActivity
         ArrayList<String> splitMessage = smsManager.divideMessage(Message);
 
 
-        String validMessage = checkIfMessageValid(Message);
+        String validMessage = SMSNotification.checkIfMessageValid(Message);
 
         if (validMessage !=  null)
         {
@@ -57,7 +58,8 @@ public class NotificationManager extends AppCompatActivity
         try
         {
             smsManager.sendMultipartTextMessage(phoneNumber, null, splitMessage, null, null);
-            //smsManager.sendTextMessage(phoneNumber, null, Message, null, null);
+
+            //smsHandler.sendTextMessage(phoneNumber, null, Message, null, null);
             ErrorOutTextView.setTextColor(Color.GREEN);
             ErrorOutTextView.setText("Looks like the message sent!");
         }
@@ -68,16 +70,7 @@ public class NotificationManager extends AppCompatActivity
         }
     }
 
-    //Will return null if it passed all checks
-    //otherwise it will return error message
-    private String checkIfMessageValid(String message)
-    {
-        if (message.length() > 918)
-        {
-            return "Message length exceeds 918 character, it is not possible to send this message";
-        }
-        return null;
-    }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults)
@@ -90,7 +83,7 @@ public class NotificationManager extends AppCompatActivity
         }
         else
         {
-            Toast.makeText(this,"Can't really send SMS's if denied, quitting mode.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Can't really send SMSNotification's if denied, quitting mode.", Toast.LENGTH_LONG).show();
             finish();
         }
     }

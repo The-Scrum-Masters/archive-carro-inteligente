@@ -8,3 +8,6 @@ https://www.mkyong.com/android/how-to-send-sms-message-in-android/
 --Permissions--
 https://developer.android.com/training/permissions/requesting.html
 
+--JSON--
+http://stackoverflow.com/questions/9605913/how-to-parse-json-in-android
+
