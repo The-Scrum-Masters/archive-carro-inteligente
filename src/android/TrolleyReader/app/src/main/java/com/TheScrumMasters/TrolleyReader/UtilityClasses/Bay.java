@@ -1,21 +1,21 @@
 package com.TheScrumMasters.TrolleyReader.UtilityClasses;
 
-import android.widget.ProgressBar;
-
 /**
  * Created by ryan on 22/09/16.
  */
 public class Bay
 {
     private int capacity, value, id;
-    private boolean isBelowThreshold;
-    public Bay(int capacity, int value, int id)
+    private double lowerThreshold;
+    private boolean reportedLow;
+
+    public Bay(int capacity, int value, double lowerThreshold, int id)
     {
         this.capacity = capacity;
         this.value = value;
         this.id = id;
-
-        isBelowThreshold = false;
+        this.lowerThreshold = lowerThreshold;
+        reportedLow = false;
     }
 
     public void setCapacity(int capacity)
@@ -43,13 +43,23 @@ public class Bay
         return id;
     }
 
-    public void setIsBelowThreshold(boolean belowThreshold)
+    public double getLowerThreshold()
     {
-        isBelowThreshold = belowThreshold;
+        return lowerThreshold;
     }
 
-    public boolean isBelowThreshold()
+    public boolean isLow()
     {
-        return isBelowThreshold;
+        int bayThreshold = (int)Math.floor(lowerThreshold * capacity);
+        if (value <= bayThreshold && !reportedLow)
+        {
+            reportedLow = true;
+            return true;
+        }
+        else
+        {
+            reportedLow = false;
+        }
+        return false;
     }
 }

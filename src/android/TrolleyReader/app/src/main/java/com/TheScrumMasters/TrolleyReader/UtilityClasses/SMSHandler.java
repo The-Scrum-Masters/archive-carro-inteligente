@@ -8,8 +8,10 @@ import android.provider.Settings;
 import android.provider.Telephony;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.IllegalFormatCodePointException;
 
 /**
  * Created by ryan on 19/09/16.
@@ -19,6 +21,8 @@ public class SMSHandler extends BroadcastReceiver
     private ISMSHandler ismsHandler;
     private SmsManager smsManager;
 
+    Context context;
+
     /* receiver is registered here rather than in the android manifest because
      * we can instantiate it properly with it's interface whereas android cannot
      */
@@ -26,6 +30,7 @@ public class SMSHandler extends BroadcastReceiver
     {
         this.ismsHandler = ismsHandler;
         smsManager = SmsManager.getDefault();
+        this.context = context;
 
 
         IntentFilter mIntentFilter = new IntentFilter();
@@ -38,6 +43,8 @@ public class SMSHandler extends BroadcastReceiver
     {
         ArrayList<String> splitMessage = smsManager.divideMessage(message);
         smsManager.sendMultipartTextMessage(phoneNumber, null, splitMessage, null, null);
+        System.out.println("----SMS Handler INFO-----");
+        System.out.println("Phone: " + phoneNumber);
         System.out.println("Sending Message");
     }
 
@@ -54,6 +61,11 @@ public class SMSHandler extends BroadcastReceiver
             }
         }
         ismsHandler.SMSReceived(messageBody);
+    }
+
+    public void destroy()
+    {
+        context.unregisterReceiver(this);
     }
 
 

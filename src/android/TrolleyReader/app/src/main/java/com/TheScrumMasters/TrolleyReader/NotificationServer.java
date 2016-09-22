@@ -1,9 +1,13 @@
 package com.TheScrumMasters.TrolleyReader;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -22,12 +26,13 @@ public class NotificationServer extends AppCompatActivity implements ISMSHandler
     /**
      * This field is the percent of capacity the bays reach before alerting staff
      */
-    private double LOWER_CAPACITY_THRESHOLD = 0.20;
+    private final int LOW_BAY = Color.YELLOW;
+    private final int NORMAL_BAY = Color.MAGENTA;
+
 
     SMSHandler smsHandler;
 
     private HashMap<Bay, ProgressBar> bays;
-    String[] staffNumbers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -35,19 +40,19 @@ public class NotificationServer extends AppCompatActivity implements ISMSHandler
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification_server);
 
-        staffNumbers = new String[] {"0434352989"};
-
         smsHandler = new SMSHandler(this,this);
 
         bayChooser = ((Spinner) findViewById(R.id.Bay_Spinner));
 
-        Bay bay0 = new Bay(20,20,0);
-        Bay bay1 = new Bay(20,20,1);
-        Bay bay2 = new Bay(20,20,2);
+        Bay bay0 = new Bay(20,20,0.75,0);
+        Bay bay1 = new Bay(20,20,0.50,1);
+        Bay bay2 = new Bay(20,20,0.20,2);
 
         ProgressBar progressBar_bay0 = ((ProgressBar) findViewById(R.id.Bay0_ProgressBar));
         ProgressBar progressBar_bay1 = ((ProgressBar) findViewById(R.id.Bay1_ProgressBar));
         ProgressBar progressBar_bay2 = ((ProgressBar) findViewById(R.id.Bay2_ProgressBar));
+
+
 
         Bay[] bayObjects = new Bay[] {bay0, bay1, bay2};
         ProgressBar[] baysArray = new ProgressBar[] {progressBar_bay0,progressBar_bay1,progressBar_bay2};
@@ -63,8 +68,16 @@ public class NotificationServer extends AppCompatActivity implements ISMSHandler
             baysArray[i].setMax(bayObjects[i].getCapacity());
             baysArray[i].setProgress(bayObjects[i].getValue());
             bays.put(bayObjects[i], baysArray[i]);
+
+            updateBayColours(bayObjects[i]);
         }
 
+    }
+    private void updateBayColours(Bay bay)
+    {
+        ProgressBar bar = bays.get(bay);
+        int colour = bay.isLow() ? LOW_BAY : NORMAL_BAY;
+        bar.setProgressTintList(ColorStateList.valueOf(colour));
     }
 
     public void addTrolley_onClick(View v)
@@ -121,22 +134,22 @@ public class NotificationServer extends AppCompatActivity implements ISMSHandler
         return null;
     }
 
+
     private void checkForLowBays(Bay bay, int bayPosition)
     {
-        int bayThreshold = (int)Math.floor(LOWER_CAPACITY_THRESHOLD * bay.getCapacity());
-        //reason to check if already below threshold is so that we don't spam.
-        if (bay.getValue() <= bayThreshold && !bay.isBelowThreshold())
+        if (bay.isLow())
         {
-            String message = SMSNotification.createJSONMessage("1","A Bay is running out of trolleys, would you like to accept a request to fix this?", "Bay" + bayPosition);
+            final String message = SMSNotification.createJSONMessage("1","A Bay is running out of trolleys, would you like to accept a request to fix this?", "Bay" + bayPosition);
             Toast.makeText(this, "Low bay detected sending message", Toast.LENGTH_LONG).show();
             System.out.println(message);
-            bay.setIsBelowThreshold(true);
             try
             {
-                for (String number : staffNumbers)
+                final String[] staffNumbers = getStaffNumbers();
+                if (staffNumbers == null)
                 {
-                    smsHandler.sendMessage(number, message);
+                    return;
                 }
+
             }
             catch (IllegalArgumentException e)
             {
@@ -144,16 +157,32 @@ public class NotificationServer extends AppCompatActivity implements ISMSHandler
                 e.printStackTrace();
             }
         }
-        else
-        {
-            Toast.makeText(this, "Bay is below threshold but a message was already sent", Toast.LENGTH_LONG).show();
-        }
+        updateBayColours(bay);
+    }
 
-        if (bay.getValue() > bayThreshold && bay.isBelowThreshold())
+    private String[] getStaffNumbers()
+    {
+        EditText phoneNumberText = ((EditText) findViewById(R.id.phoneNumber_EditText));
+        String phoneNumbers = phoneNumberText.getText().toString();
+        if (phoneNumbers.isEmpty())
         {
-            bay.setIsBelowThreshold(false);
-            Toast.makeText(this, "Bay has risen above the threshold", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Phone numbers are empty, please enter atleast 1", Toast.LENGTH_LONG);
+            return null;
         }
+        //System.out.println("Phone numbers: ");
+        //System.out.println(phoneNumbers);
+        String[] phoneNumberArray = phoneNumbers.split("/\n/g");
+        for (String str : phoneNumberArray)
+            System.out.println(str);
+
+        return phoneNumberArray;
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        smsHandler.destroy();
+        super.onDestroy();
     }
 
     @Override

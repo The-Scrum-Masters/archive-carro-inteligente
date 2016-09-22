@@ -122,4 +122,11 @@ public class NotificationClient extends AppCompatActivity implements ISMSHandler
                 .show();
     }
 
+    @Override
+    protected void onDestroy()
+    {
+        smsHandler.destroy();
+        super.onDestroy();
+    }
+
 }
