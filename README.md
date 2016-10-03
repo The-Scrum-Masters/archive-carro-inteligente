@@ -125,3 +125,12 @@ commands for mongo
 - Python GUI
 - Add troley bay config capabilities to android
 - Web app interface
+
+
+
+### TEST CONSOLE
+
+| Command |      Syntax      |
+|---------|------------------|
+| Add bay |     INIT>bay     |
+| Trolley | TRIO>bay#trolley |
