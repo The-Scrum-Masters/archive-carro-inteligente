@@ -1,4 +1,4 @@
-package com.TheScrumMasters.TrolleyReader;
+package com.TheScrumMasters.TrolleyReader.UtilityClasses;
 
 import android.app.Activity;
 import android.app.PendingIntent;
@@ -26,6 +26,8 @@ public class NFCHandler {
     private NfcAdapter adapter;
     private Tag tag;
 
+    boolean hasNFCReader;
+
     //tag properties
     String TrolleyID;
     String CentreID;
@@ -34,7 +36,9 @@ public class NFCHandler {
 
     public NFCHandler(Activity activity, boolean mode)
     {
+
         this.activity = activity;
+        hasNFCReader = doesDeviceHaveReader();
         writeMode = mode;
         adapter = NfcAdapter.getDefaultAdapter(activity);
     }
@@ -180,6 +184,11 @@ public class NFCHandler {
         // Get the Text
         return new String(payload, languageCodeLength + 1, payload.length - languageCodeLength - 1, textEncoding);
     }
+
+    //True if it does, false if it doesn't
+    public boolean doesDeviceHaveReader() {return adapter != null;}
+
+    public boolean isReaderEnabled() {return adapter.isEnabled();}
 
     public String getTrolleyID()
     {

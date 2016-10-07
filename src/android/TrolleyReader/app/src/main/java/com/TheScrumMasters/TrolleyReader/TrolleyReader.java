@@ -12,6 +12,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.TheScrumMasters.TrolleyReader.UtilityClasses.NFCHandler;
+import com.TheScrumMasters.TrolleyReader.UtilityClasses.UDPMessageSender;
+
 public class TrolleyReader extends AppCompatActivity
 {
     private NFCHandler nfcHandler;

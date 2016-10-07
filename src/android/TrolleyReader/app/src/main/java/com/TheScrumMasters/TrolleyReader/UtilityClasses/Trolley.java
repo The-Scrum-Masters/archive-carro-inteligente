@@ -1,4 +1,4 @@
-package com.TheScrumMasters.TrolleyReader;
+package com.TheScrumMasters.TrolleyReader.UtilityClasses;
 
 /**
  * Created by ryan on 30/08/16.

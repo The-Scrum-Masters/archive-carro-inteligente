@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.TheScrumMasters.TrolleyReader">
+          package="com.TheScrumMasters.TrolleyReader">
 
-    <uses-permission android:name="android.permission.NFC" />
+    <uses-permission android:name="android.permission.NFC"/>
 
     <uses-feature
         android:name="android.hardware.nfc"
-        android:required="true" />
+        android:required="false"/>
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
 
     <application
         android:allowBackup="true"
@@ -20,25 +22,36 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
             <intent-filter>
-                <action android:name="android.nfc.action.TECH_DISCOVERED" />
+                <action android:name="android.nfc.action.TECH_DISCOVERED"/>
             </intent-filter>
 
             <meta-data
                 android:name="android.nfc.action.TECH_DISCOVERED"
-                android:resource="@xml/techlist" />
+                android:resource="@xml/techlist"/>
             <meta-data
                 android:name="android.nfc.action.TECH_DISCOVERED"
-                android:resource="@xml/techlist" />
+                android:resource="@xml/techlist"/>
         </activity>
         <activity
             android:name=".TrolleyReader"
-            android:label="@string/ReadMode" />
-        <activity android:name=".TrolleyWriter" android:label="@string/WriteMode"></activity>
+            android:label="@string/ReadMode"/>
+        <activity
+            android:name=".TrolleyWriter"
+            android:label="@string/WriteMode"/>
+        <activity
+            android:name=".NotificationManager"
+            android:label="Notification Manager (to send SMS)"/>
+        <activity
+            android:name=".NotificationClient"
+            android:label="Notification Client"/>
+
+        <activity android:name=".NotificationServer">
+        </activity>
     </application>
 
 </manifest>

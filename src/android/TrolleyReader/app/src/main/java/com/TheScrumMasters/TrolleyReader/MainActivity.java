@@ -10,10 +10,13 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.TheScrumMasters.TrolleyReader.UtilityClasses.NFCHandler;
+
 public class MainActivity extends AppCompatActivity
 {
 
     private NFCHandler nfcHandler;
+    private boolean hasNFCReader;
 
     //textviews, set in getTextViews()
     TextView nfcType;
@@ -27,9 +30,15 @@ public class MainActivity extends AppCompatActivity
 
         getTextViews();
         nfcHandler = new NFCHandler(this, false);
+        hasNFCReader = nfcHandler.doesDeviceHaveReader();
+
+        if (!hasNFCReader)
+            disableNFC();
+
+
 
         Intent intent = getIntent();
-        if (intent != null)
+        if (intent != null && hasNFCReader)
         {
             nfcHandler.handleNewRead(intent);
         }
@@ -39,7 +48,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onPause()
     {
-        nfcHandler.disableForegroundDispatch();
+        if (hasNFCReader)
+        {
+            nfcHandler.disableForegroundDispatch();
+        }
         super.onPause();
     }
 
@@ -47,14 +59,17 @@ public class MainActivity extends AppCompatActivity
     public void onResume()
     {
         //nfcHandler.enableForegroundDispatch(); IDK why it doesn't work, but the below does
+        if (hasNFCReader)
+        {
+            Intent nfcIntent = new Intent(this, getClass());
+            nfcIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, nfcIntent, 0);
+            IntentFilter[] intentFiltersArray = new IntentFilter[] {};
+            String[][] techList = new String[][] { { android.nfc.tech.Ndef.class.getName() }, { android.nfc.tech.NdefFormatable.class.getName() } };
+            NfcAdapter nfcAdpt = NfcAdapter.getDefaultAdapter(this);
+            nfcAdpt.enableForegroundDispatch(this, pendingIntent, intentFiltersArray, techList);
+        }
 
-        Intent nfcIntent = new Intent(this, getClass());
-        nfcIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, nfcIntent, 0);
-        IntentFilter[] intentFiltersArray = new IntentFilter[] {};
-        String[][] techList = new String[][] { { android.nfc.tech.Ndef.class.getName() }, { android.nfc.tech.NdefFormatable.class.getName() } };
-        NfcAdapter nfcAdpt = NfcAdapter.getDefaultAdapter(this);
-        nfcAdpt.enableForegroundDispatch(this, pendingIntent, intentFiltersArray, techList);
         super.onResume();
     }
 
@@ -83,10 +98,32 @@ public class MainActivity extends AppCompatActivity
         startActivity(new Intent(this, TrolleyReader.class));
     }
 
+    public void NotificationMode_onClick(View v)
+    {
+        startActivity(new Intent(this, NotificationManager.class));
+    }
+
+    public void NotificationClient_onClick(View v)
+    {
+        startActivity(new Intent(this, NotificationClient.class));
+    }
+
+    public void NotificationServer_onClick(View v)
+    {
+        startActivity(new Intent(this, NotificationServer.class));
+    }
+
     private void getTextViews()
     {
         nfcType = (TextView) findViewById(R.id.NFC_Type_Out);
         nfcID = (TextView) findViewById(R.id.NFC_ID_Out);
+    }
+
+    private void disableNFC()
+    {
+        Toast.makeText(this, "No Nfc reader detected disabling relevant features", Toast.LENGTH_LONG).show();
+        findViewById(R.id.writeTagMode).setEnabled(false);
+        findViewById(R.id.readTagMode).setEnabled(false);
     }
 
 }

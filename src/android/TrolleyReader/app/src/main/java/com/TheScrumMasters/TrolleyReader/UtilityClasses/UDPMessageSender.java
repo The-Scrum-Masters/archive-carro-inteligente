@@ -1,4 +1,4 @@
-package com.TheScrumMasters.TrolleyReader;
+package com.TheScrumMasters.TrolleyReader.UtilityClasses;
 
 import android.os.AsyncTask;
 import android.os.Build;
