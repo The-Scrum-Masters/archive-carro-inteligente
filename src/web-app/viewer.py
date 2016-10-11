@@ -17,3 +17,4 @@ for x in collections:
     if (len(str(x)) < 6):
         print("bay "+ str(x) +" has "+ str(cursor.count()) +" trolley(s)")
     cursor.close()
+#Just learning to commit using smartGit #menka

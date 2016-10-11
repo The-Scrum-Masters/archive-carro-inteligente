@@ -1,4 +1,4 @@
-## Carro Inteligente ![shield](https://img.shields.io/github/issues/The-Scrum-Masters/carro-inteligente.svg) [![GitHub stars](https://img.shields.io/github/stars/The-Scrum-Masters/carro-inteligente.svg)](https://github.com/The-Scrum-Masters/carro-inteligente/stargazers)
+## Carro Inteligente ![issues](https://img.shields.io/github/issues/The-Scrum-Masters/carro-inteligente.svg) [![GitHub stars](https://img.shields.io/github/stars/The-Scrum-Masters/carro-inteligente.svg)](https://github.com/The-Scrum-Masters/carro-inteligente/stargazers)
 > an *Internet of Things* innovation int the way we shop. It provides *trolley tracking* information and big data analytics. In our first release we produced a prototype model that can track trolley bay quantities and store this data offsite or locally in a mongoDB.
 
 ### Downloads
@@ -6,24 +6,24 @@
 
 >[Download Link](https://drive.google.com/file/d/0BxTFdcq6C-VZMHVLQW5VVHZwTEE/view?usp=sharing)
 
->[Virus check](https://www.virustotal.com/en/file/dd549091ed47f84ed913c35e164f5309b65448eb52374cf62885e0cbb69525bd/analysis/1473392560/)
+>[Virus check](https://www.virustotal.com/en/file/dd549091ed47f84ed913c35e164f5309b65448eb52374cf62885e0cbb69525bd/analysis/1473392560/) (*check the sha256 against this to ensure validity*)
 
 
 ###Other Information
 
 MongoDB Testing Database Login Information (only use this db for testing)
->mongodb://greg:greg@ds019746.mlab.com:19746/trolleysystem
+>[mongodb://greg:greg@ds019746.mlab.com:19746/trolleysystem](http://greg:greg@ds019746.mlab.com:19746/trolleysystem)
 
 ## How to setup
 
-### Step 1. Requirements
+### Step 0. Requirements
 - Python 2.7
 - PIP (python package manager)
 - PyMongo
 - MongoDB Shell or access to port 19746
 - Android w/NFC running api 21 (Lolipop) or above
 
-### Step 2. Configuration of  Server
+### Step 1. Configuration of  Server
 
 ##### Option 1
 *For offsite database*
@@ -90,7 +90,7 @@ Next you will need to initiate bays (this step is the same for local and offsite
 
 >![alert](http://media.uninen.net/admin/img/icon-alert.svg)![alert](http://media.uninen.net/admin/img/icon-alert.svg) Make sure that you do not include a '#' in the bay name otherwise it will cause problems with the prototype and the bay name length must be shorter than 10 characters
 
-Step 4. Testing the system
+###Step 4. Testing the system
 
 >Ensure that all devices have been setup with the correct IPs and ports and they are all on the same network using a valid port address
 
@@ -125,3 +125,12 @@ commands for mongo
 - Python GUI
 - Add troley bay config capabilities to android
 - Web app interface
+
+
+
+### TEST CONSOLE
+
+| Command |      Syntax      |
+|---------|------------------|
+| Add bay |     INIT>bay     |
+| Trolley | TRIO>bay#trolley |
